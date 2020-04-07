@@ -11,7 +11,7 @@ It is possible to run the application in different ways:
 * building a [Docker](https://www.docker.com/) image and running it as a container
 
 Depending on the above choice, these are the requirements you need to install on the executing environment:
-* JDK12+, in first two cases (open source versions are fine, e.g. [AdoptOpenJDK](https://adoptopenjdk.net/))
+* JDK11+, in first two cases (open source versions are fine, e.g. [AdoptOpenJDK](https://adoptopenjdk.net/))
 * Docker, for the last one
 
 ### Spring Boot Maven Plugin
