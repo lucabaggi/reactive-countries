@@ -1,9 +1,9 @@
 # Countries reactive REST API
 
+[![CircleCI](https://circleci.com/gh/lucabaggi/reactive-countries.svg?style=shield)](https://circleci.com/gh/lucabaggi/reactive-countries) [![codecov](https://codecov.io/gh/lucabaggi/reactive-countries/branch/master/graph/badge.svg)](https://codecov.io/gh/lucabaggi/reactive-countries)
+
 Reactive REST web service that returns all countries whose name matches a given search text. 
 The project is based on [Spring Boot 2](https://spring.io/projects/spring-boot) with [Spring WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html), which is built on top of [Project Reactor](https://projectreactor.io/)
-
-[![CircleCI](https://circleci.com/gh/lucabaggi/reactive-countries.svg?style=shield)](https://circleci.com/gh/lucabaggi/reactive-countries) [![codecov](https://codecov.io/gh/lucabaggi/reactive-countries/branch/master/graph/badge.svg)](https://codecov.io/gh/lucabaggi/reactive-countries)
 
 ## Application running
 
