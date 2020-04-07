@@ -35,7 +35,7 @@ jobs:
           file: target/jacoco-reports/jacoco.xml
   integration_tests:
     working_directory: ~/circleci-reactive-countries
-    docker: # run the steps with Docker
+    docker:
       - image: circleci/openjdk:11
     steps:
       - checkout
