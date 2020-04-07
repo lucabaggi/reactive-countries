@@ -6,7 +6,7 @@ jobs:
     docker: # run the steps with Docker
       - image: circleci/openjdk:11
     steps:
-      - checkout # check out source code to working directory
+      - checkout
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
           key: m2-{{ checksum "pom.xml" }}
       - run: mvn package -Dskip.unit.test=true -Dskip.integration.test=true
@@ -14,14 +14,20 @@ jobs:
           paths:
             - ~/.m2
           key: m2-{{ checksum "pom.xml" }}
-  unit-tests:
+  unit_tests:
     working_directory: ~/circleci-reactive-countries
     docker: # run the steps with Docker
       - image: circleci/openjdk:11
     steps:
+      - checkout
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
           key: m2-{{ checksum "pom.xml" }}
       - run: ./mvnw test
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
     #    # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: target/surefire-reports
+
+workflows:
+  build_and_test:
+    - build
+    - unit_tests
