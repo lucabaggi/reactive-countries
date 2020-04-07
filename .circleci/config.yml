@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.5
+
 jobs:
   build: # runs not using Workflows must have a `build` job as entry point
     working_directory: ~/circleci-reactive-countries
@@ -28,6 +31,8 @@ jobs:
           path: target/surefire-reports
       - store_artifacts:
           path: target/jacoco-reports
+      - codecov/upload:
+          file: target/jacoco-reports/jacoco.xml
   integration_tests:
     working_directory: ~/circleci-reactive-countries
     docker: # run the steps with Docker
