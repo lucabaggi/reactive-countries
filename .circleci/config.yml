@@ -29,5 +29,8 @@ jobs:
 
 workflows:
   build_and_test:
-    - build
-    - unit_tests
+    jobs:
+      - build
+      - unit_tests:
+          requires:
+            - build
