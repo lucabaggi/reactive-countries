@@ -8,8 +8,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Component
 public class RestCountriesWebClient {
 
-    @Value( "${rest_countries.base_url}" )
     private String restCountriesBaseUrl;
+
+    public RestCountriesWebClient(@Value("${rest_countries.base_url}") String restCountriesBaseUrl) {
+        this.restCountriesBaseUrl = restCountriesBaseUrl;
+    }
 
     @Bean
     public WebClient webClient() {
