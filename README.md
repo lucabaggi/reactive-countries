@@ -56,6 +56,7 @@ curl http://localhost:8080/countries/italy
 ## Testing
 
 Both unit and integration tests are included and their execution is managed inside Maven lifecycle using [Surefire](http://maven.apache.org/surefire/maven-surefire-plugin/) and [Failsafe](http://maven.apache.org/surefire/maven-failsafe-plugin/) maven plugins.
+Unit tests results are used to generate reports using [JaCoCo](https://www.eclemma.org/jacoco/) maven plugin.
 
 To run unit tests:
 ```
@@ -67,4 +68,8 @@ To run unit and integration tests:
 `./mvnw integration-test` or `./mvnw verify`
 
 It is possible to skip unit or integration tests using `-Dskip.unit.test=true` or `-Dskip.integration.test=true`
+
+## Continuous Integration
+
+Automatic build and testing is configured using [CircleCI](https://circleci.com/). JaCoCo generated reports are pushed by CircleCI on [CodeCov](https://codecov.io/) for code coverage checks.
 

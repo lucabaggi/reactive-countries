@@ -4,13 +4,13 @@ orbs:
   codecov: codecov/codecov@1.0.5
 
 jobs:
-  build: # runs not using Workflows must have a `build` job as entry point
+  build:
     working_directory: ~/circleci-reactive-countries
-    docker: # run the steps with Docker
+    docker:
       - image: circleci/openjdk:11
     steps:
       - checkout
-      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+      - restore_cache:
           key: m2-{{ checksum "pom.xml" }}
       - run: mvn package -Dskip.unit.test=true -Dskip.integration.test=true
       - save_cache:
@@ -19,15 +19,14 @@ jobs:
           key: m2-{{ checksum "pom.xml" }}
   unit_tests:
     working_directory: ~/circleci-reactive-countries
-    docker: # run the steps with Docker
+    docker:
       - image: circleci/openjdk:11
     steps:
       - checkout
-      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+      - restore_cache:
           key: m2-{{ checksum "pom.xml" }}
       - run: ./mvnw test
-      - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
-    #    # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+      - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
           path: target/jacoco-reports
@@ -39,11 +38,10 @@ jobs:
       - image: circleci/openjdk:11
     steps:
       - checkout
-      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+      - restore_cache:
           key: m2-{{ checksum "pom.xml" }}
       - run: ./mvnw integration-test -Dskip.unit.test=true
-      - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
-          #    # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+      - store_test_results:
           path: target/failsafe-reports
 
 workflows:

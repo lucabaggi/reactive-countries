@@ -184,6 +184,8 @@
 				<configuration>
 					<excludes>
 						<exclude>it/lucabaggi/countries/repository/model/**</exclude><!-- POJOs -->
+						<exclude>it/lucabaggi/countries/model/**</exclude><!-- POJOs -->
+						<exclude>it/lucabaggi/countries/CountriesApplication.class</exclude>
 					</excludes>
 					<dataFile>${project.build.directory}/jacoco.exec</dataFile>
 					<outputDirectory>${project.build.directory}/jacoco-reports</outputDirectory>
