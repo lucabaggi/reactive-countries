@@ -41,7 +41,7 @@ It is possible to build a Docker image using [Jib Maven Plugin](https://github.c
 ```
 mvn compile jib:dockerBuild
 ```
-This will produce a Docker image named `reactive-countries:latest` based on `adoptopenjdk/openjdk12:alpine-jre`. 
+This will produce a Docker image named `reactive-countries:latest` based on `adoptopenjdk/openjdk11:alpine-jre`. 
 Then to run the container:
 ```
 docker run -d -p 8080:8080 reactive-countries:latest

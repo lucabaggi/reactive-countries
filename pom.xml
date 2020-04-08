@@ -217,7 +217,7 @@
 				<version>${jib.version}</version>
 				<configuration>
 					<from>
-						<image>adoptopenjdk/openjdk12:alpine-jre</image>
+						<image>adoptopenjdk/openjdk11:alpine-jre</image>
 					</from>
 					<to>
 						<image>reactive-countries</image>
