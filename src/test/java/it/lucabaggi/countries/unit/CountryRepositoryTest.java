@@ -1,23 +1,25 @@
-package it.lucabaggi.countries.integration;
+package it.lucabaggi.countries.unit;
 
+import it.lucabaggi.countries.common.MockServerBaseTest;
 import it.lucabaggi.countries.model.Country;
 import it.lucabaggi.countries.repository.CountryRepository;
+import it.lucabaggi.countries.repository.RestCountriesRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
-import static it.lucabaggi.countries.common.Utils.*;
+import static it.lucabaggi.countries.common.Configuration.REMOTE_COUNTRIES_BASE_URI;
+import static it.lucabaggi.countries.common.Utils.buildCountry;
 
-@DisplayName("Integration tests for CountryRepository")
-public class CountryRepositoryIT extends BaseIntegrationTest {
+@DisplayName("Unit tests for CountryRepository")
+public class CountryRepositoryTest extends MockServerBaseTest {
 
     //sut
-    @Autowired
-    private CountryRepository countryRepository;
+    private CountryRepository countryRepository = new RestCountriesRepository(WebClient.create(buildRemoteUrl()));
 
     @Test
     public void shouldReturnCountryList() {
@@ -48,6 +50,12 @@ public class CountryRepositoryIT extends BaseIntegrationTest {
                 .expectErrorMatches(throwable -> throwable instanceof WebClientResponseException &&
                         ((WebClientResponseException) throwable).getStatusCode().equals(HttpStatus.NOT_FOUND))
                 .verify();
+    }
+
+    private static String buildRemoteUrl() {
+        return new StringBuilder(mockServer.baseUrl())
+                .append(REMOTE_COUNTRIES_BASE_URI)
+                .toString();
     }
 
 }
